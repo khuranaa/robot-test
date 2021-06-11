@@ -1,0 +1,5 @@
+robot\Move.class
+robot\BoundInteger.class
+robot\Direction.class
+robot\Robot.class
+robot\Position.class
