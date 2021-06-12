@@ -2,7 +2,6 @@ package robot;
 
 import java.io.Console;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Robot {
@@ -59,10 +58,12 @@ public class Robot {
     private static void performFurtherMoves(String input) {
         if (input.equals(MOVE)) {
             currentPosition.move();
-        } else if (input.equals(Move.LEFT) ||
-                input.equals(Move.RIGHT)) {
-            Direction newDirection = DIRECTION_MOVEMENT.get(currentPosition.getDirection().name()
-                    + Move.getMove(input).name());
+        } else if (Move.LEFT.name().equals(input) ||
+                Move.RIGHT.name().equals(input)) {
+            String moveDirection = currentPosition.getDirection().name() + "_"
+                    + Move.getMove(input).name();
+            System.out.println("Finding new direction for :" + moveDirection);
+            Direction newDirection = DIRECTION_MOVEMENT.get(moveDirection);
             currentPosition.setDirection(newDirection);
         } else {
             throw new IllegalArgumentException("Incorrect input, use one of RIGHT or LEFT or MOVE");
@@ -93,12 +94,10 @@ public class Robot {
             throw new IllegalArgumentException("Invalid input: " + value + " please provide X,Y,F ");
         } else {
             try {
-                Integer x = Integer.parseInt(values[0]);
-                Integer y = Integer.parseInt(values[1]);
+                BoundInteger axis = new BoundInteger(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
                 Direction direction = Direction.getDirection(values[2]);
                 Position position = new Position();
                 position.setDirection(direction);
-                BoundInteger axis = new BoundInteger(x, y);
                 position.setCurrentPosition(axis);
                 return position;
             } catch (Exception e) {

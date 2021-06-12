@@ -31,12 +31,16 @@ public class Position {
 
     public void move() {
         if(direction == Direction.EAST) {
+            currentPosition.validateX(1);
             currentPosition.incrementX();
         } else if(direction == Direction.WEST) {
+            currentPosition.validateX(-1);
             currentPosition.decrementX();
         } else if(direction == Direction.NORTH) {
+            currentPosition.validateY(1);
             currentPosition.incrementY();
         } else if(direction == Direction.SOUTH) {
+            currentPosition.validateY(-1);
             currentPosition.decrementY();
         }
     }

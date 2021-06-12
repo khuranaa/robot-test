@@ -10,4 +10,5 @@ public enum Move {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("Incorrect move, please choose LEFT or RIGHT"));
     }
+
 }
