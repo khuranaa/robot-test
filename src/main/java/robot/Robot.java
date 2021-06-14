@@ -19,7 +19,7 @@ public class Robot {
 
     private static Position currentPosition;
 
-    private static boolean onTable = false;
+
 
     static {
         DIRECTION_MOVEMENT.put("NORTH_LEFT", Direction.WEST);
@@ -34,16 +34,17 @@ public class Robot {
 
     public static void main(String[] args) {
         Console c = System.console();
+        boolean onTable = false;
         while (true) {
             try {
                 String input = c.readLine(INPUT_MESSAGE);
-                if (!onTable) {
+                if (!onTable || input.startsWith(PLACE)) {
                     placeOnTable(input);
+                    onTable = true;
                     continue;
                 }
                 if (input.equals(REPORT)) {
-                    //out of table
-                    onTable = false;
+
                     System.out.println(OUTPUT_MESSAGE + currentPosition);
                 } else {
                     performFurtherMoves(input);
@@ -73,10 +74,8 @@ public class Robot {
     private static void placeOnTable(String input) {
         String[] inputs = extractInput(input.trim());
         String positionString = inputs[1];
-        //place on table
         Position position = extractPosition(positionString);
         currentPosition = position;
-        onTable = true;
     }
 
     private static String[] extractInput(String input) {
@@ -98,7 +97,7 @@ public class Robot {
                 Direction direction = Direction.getDirection(values[2]);
                 Position position = new Position();
                 position.setDirection(direction);
-                position.setCurrentPosition(axis);
+                position.setAxis(axis);
                 return position;
             } catch (Exception e) {
                 throw new IllegalArgumentException("Invalid location" + values[0] + "," + values[1]);

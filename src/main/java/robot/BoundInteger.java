@@ -5,33 +5,31 @@ public class BoundInteger {
     private int yAxis;
 
     public BoundInteger(int xAxis, int yAxis) {
-        validateX(xAxis);
-        validateY(yAxis);
+        isBound(xAxis);
+        isBound(yAxis);
         this.xAxis = xAxis;
         this.yAxis = yAxis;
     }
 
     public void incrementX() {
-        validateX(xAxis + 1);
+        isBound(xAxis+1);
         xAxis++;
     }
 
     public void decrementX() {
-        validateX(xAxis -1);
+        isBound(xAxis-1);
         xAxis--;
     }
 
     public void incrementY() {
-        validateY(yAxis + 1);
+        isBound(yAxis+1);
         yAxis++;
     }
 
     public void decrementY() {
-        validateY(yAxis -1);
+        isBound(yAxis-1);
         yAxis--;
     }
-
-
 
     public int getxAxis() {
         return xAxis;
@@ -47,14 +45,6 @@ public class BoundInteger {
 
     public void setyAxis(int yAxis) {
         this.yAxis = yAxis;
-    }
-
-    public void validateX(int move) {
-        isBound(xAxis + move);
-    }
-
-    public void validateY(int move) {
-        isBound(yAxis + move);
     }
 
     private void isBound(int axis) {

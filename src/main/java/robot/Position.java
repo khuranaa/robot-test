@@ -1,7 +1,7 @@
 package robot;
 
 public class Position {
-    private BoundInteger currentPosition;
+    private BoundInteger axis;
 
     private Direction direction;
 
@@ -9,16 +9,16 @@ public class Position {
     }
 
     public Position(BoundInteger currentPosition, Direction direction) {
-        this.currentPosition = currentPosition;
+        this.axis = currentPosition;
         this.direction = direction;
     }
 
-    public BoundInteger getCurrentPosition() {
-        return currentPosition;
+    public BoundInteger getAxis() {
+        return axis;
     }
 
-    public void setCurrentPosition(BoundInteger currentPosition) {
-        this.currentPosition = currentPosition;
+    public void setAxis(BoundInteger axis) {
+        this.axis = axis;
     }
 
     public Direction getDirection() {
@@ -31,23 +31,19 @@ public class Position {
 
     public void move() {
         if(direction == Direction.EAST) {
-            currentPosition.validateX(1);
-            currentPosition.incrementX();
+            axis.incrementX();
         } else if(direction == Direction.WEST) {
-            currentPosition.validateX(-1);
-            currentPosition.decrementX();
+            axis.decrementX();
         } else if(direction == Direction.NORTH) {
-            currentPosition.validateY(1);
-            currentPosition.incrementY();
+            axis.incrementY();
         } else if(direction == Direction.SOUTH) {
-            currentPosition.validateY(-1);
-            currentPosition.decrementY();
+            axis.decrementY();
         }
     }
 
     @Override
     public String toString() {
-        return  currentPosition + "," + direction;
+        return  axis + "," + direction;
     }
 }
 
